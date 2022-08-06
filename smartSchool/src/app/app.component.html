@@ -1,0 +1,48 @@
+<!--## ou usar essa maneira de chamar a rota
+     ou usar a router de baixo ...**
+<app-alunos></app-alunos>
+<app-professores></app-professores>
+
+### neste caso  o link é usado recarregando a pagina
+<nav>
+     <ul>
+          <li>
+               <a href="alunos">ALUNOS</a>
+          </li>
+
+          <li>
+               <a href="professores/">PROFESSORES</a>
+     </li>
+     </ul>
+</nav>
+-->
+<!-- já usando abaixo evita isso -->
+<!--
+<nav>
+     <ul>
+          <li>              
+              <a routerLink ="dashboard/">Principal..</a>
+          </li>
+          <li>               
+               <a routerLink ="perfil">Perfil...</a>
+          </li>
+           <li>               
+               <a routerLink ="professores/">PROFESSORES</a>
+          </li>
+          <li>
+               <a routerLink ="alunos">ALUNOS</a>
+          </li>
+     </ul>
+</nav>
+-->
+<!-- ................................ -->
+
+<!-- agora vai ter uma nova apresentação com o nav -->
+
+ <app-nav></app-nav>
+ 
+ <div class="container">
+     <router-outlet></router-outlet>
+ </div>
+
+<!-- ................................ -->

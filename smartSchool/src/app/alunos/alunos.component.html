@@ -1,0 +1,46 @@
+<!--  ***aula de angular  canal prograAMADA MENTE **** -->
+<!--  **** https://youtu.be/4k8aCkFpHk0 **** -->
+
+
+<app-titulo [titulo]="titulo"></app-titulo>
+<!--
+<ul> <li *ngFor="let aluno of alunos">{{aluno.nome}} </li></ul>
+-->
+  <!--  outra maneira é colocando apenas.. {{aluno}}   -->
+          <!-- ########################    -->
+          
+
+
+
+
+
+         <div *ngIf="alunoSelecionado">
+          aluno selecionado: {{alunoSelecionado}};
+          <br>
+          <button class="btn btn-default" (click) = 'voltar()'> voltar</button>
+         </div>
+
+         <div *ngIf="!alunoSelecionado">
+          Nenhum selecionado
+         </div>
+
+<table class="table table-hover">
+   <!-- bootstrap .....-->
+   <thead class="thead-dark">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Disciplina</th>  
+      <th scope="col">Telefone</th>    
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let aluno of alunos" 
+     style="cursor: pointer;"   (click) = 'alunoSelect(aluno)'>  
+      <th scope="row">{{aluno.id}}</th>    
+      <td>{{aluno.nome}}</td>
+      <td>{{aluno.sobrenome}}</td>
+      <td>{{aluno.telefone}}</td>
+    </tr>        
+  </tbody>
+</table>
