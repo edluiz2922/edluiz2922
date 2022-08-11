@@ -7,20 +7,31 @@
 -->
 <!-- bootstrap .....-->
 
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">NOME</th>
-      <th scope="col">DISCIPLINA</th>    
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let professor of professores">
-      <td>{{professor.id}}</td>      
-      <td>{{professor.nome}}</td>
-      <td>{{professor.disciplina}}</td>
-     
-    </tr>        
-  </tbody>
-</table>
+
+<div *ngIf="profSelecionado">
+  <app-titulo [titulo]="'Professor:'+ profSelecionado" ></app-titulo>
+   <br>
+     <button class="btn btn-default" (click) = 'voltar()'> voltar</button>
+ </div>
+
+ <div *ngIf=" !profSelecionado">
+
+   Nenhum professor Selecionado....
+
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">NOME</th>
+          <th scope="col">DISCIPLINA</th>    
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let professor of professores">
+          <td>{{professor.id}}</td>      
+          <td>{{professor.nome}}</td>
+          <td>{{professor.disciplina}}</td>     
+        </tr>        
+      </tbody>
+    </table>
+</div>
