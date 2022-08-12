@@ -2,18 +2,31 @@
 <!--  **** https://youtu.be/4k8aCkFpHk0 **** -->
 
 
-
-
          <div *ngIf="alunoSelecionado">
-          <app-titulo [titulo]="'Aluno:'+ alunoSelecionado" ></app-titulo>
-           <br>
-          <button class="btn btn-default" (click) = 'voltar()'> voltar</button>
+            <div class="row">
+              <div class="col-mr-auto">
+                <app-titulo [titulo]="'Aluno:'+ alunoSelecionado"></app-titulo>
+              </div>
+              <div class="col-mt-1">
+                <button class="btn btn-warning" (click) ='voltar()'> Voltar</button>
+              </div>
+            </div>
+              <!--formulário-->
+            <form>
+              <div class="form-group">
+                <label for="formGroupExampleInput">Example label</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
+              </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput2">Another label</label>
+                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
+              </div>
+            </form>
          </div>
 
          <div *ngIf="!alunoSelecionado">
-
           <app-titulo [titulo]="titulo" ></app-titulo>
-          Nenhum selecionado
+             Nenhum selecionado
             <table class="table table-hover">
               <!-- bootstrap .....-->
               <thead class="thead-dark">
@@ -34,4 +47,4 @@
               </tr>        
             </tbody>
             </table>
-       </div>
+         </div>

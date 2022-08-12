@@ -1,24 +1,33 @@
-<app-titulo [titulo]="titulo"></app-titulo>
 
-<!--  <ul> <li *ngFor="let professor of professores"> 
-             vc escreve asso, {{aluno}}  como  array our como obj assim.. {{professor.nome}}
-          </li>  
-      </ul>
--->
-<!-- bootstrap .....-->
-
-
+<!-- formulário -->
 <div *ngIf="profSelecionado">
-  <app-titulo [titulo]="'Professor:'+ profSelecionado" ></app-titulo>
-   <br>
-     <button class="btn btn-default" (click) = 'voltar()'> voltar</button>
- </div>
+  <div class="row">
+    <div class="col-mr-auto">
+      <app-titulo [titulo]="'Professor: '+ profSelecionado"></app-titulo>
+    </div>
+    <div class="col-mt-1">
+      <button class="btn btn-warning" (click) ='voltar()'>voltar</button>
+    </div>
+  </div> 
+           <!--formulário-->
+    <form>
+      <div class="form-group">
+        <label for="formGroupExampleInput">Example label</label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Another label</label>
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
+      </div>
+  </form>
+</div>
+  <!--.............................--> 
 
- <div *ngIf=" !profSelecionado">
+ <div *ngIf="!profSelecionado">
 
-   Nenhum professor Selecionado....
-
-    <table class="table">
+  <app-titulo [titulo]="titulo"></app-titulo>
+     Nenhum professor Selecionado....
+    <table class="table table-haver">
       <thead class="thead-light">
         <tr>
           <th scope="col">id</th>
@@ -27,8 +36,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let professor of professores">
-          <td>{{professor.id}}</td>      
+        <tr *ngFor="let professor of professores" style="cursor: pointer;"
+        (click)="profSelect(professor)">
+          <th scope="row">{{professor.id}}</th>      
           <td>{{professor.nome}}</td>
           <td>{{professor.disciplina}}</td>     
         </tr>        
