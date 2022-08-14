@@ -1,0 +1,168 @@
+ ***aula de angular  canal prograAMADA MENTE **** -->
+<!--  **** https://youtu.be/4k8aCkFpHk0 **** -->
+
+<!--  **** aluno.coomponet.html....**** -->
+
+         <div class="row">
+            <div class="col-sm-6" *ngIf="alunoSelecionado">
+          <div class="row">
+            <div class="col-mr-auto">
+              <app-titulo [titulo]="'Cod.aluno: '+ alunoSelecionado.id"></app-titulo>
+            </div>
+            <div class="col-mt-1">
+              <button class="btn btn-danger" (click) ='voltar()'> 
+                Voltar</button>
+            </div>
+          </div>
+            <!--formulário-->
+          <form [formGroup]="alunoForm" (submit)="alunoSubmit()">
+              <div class="form-group">
+                <label for="formGroupExampleInput">NOME</label>
+                <input type="text" formControlName = "nome" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput2">SOBRENOME</label>
+                <input type="text" formControlName = "sobrenome" class="form-control" >
+              </div>
+              <div class="form-group">
+                <label for="formGroupExampleInput2">TELEFONE</label>
+                <input type="text"  formControlName = "telefone"  class="form-control" >
+              </div>
+              <div class="form-group">
+               <hr>
+               <button class="btn btn-success" [disabled]="!alunoForm.valid">Enviar_Form</button>
+              </div>
+          </form>
+            </div>
+              <!-- separando/colocando lado a lado com ngClas os dados-->
+            <div  [ngClass]="{'col-sm-6' : alunoSelecionado, 'col-sm-12':!alunoSelecionado}">
+              <app-titulo [titulo]="titulo" ></app-titulo>
+                Nenhum selecionado
+                <table class="table table-hover">
+                  <!-- bootstrap .....-->
+                  <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Disciplina</th>  
+                    <th scope="col">Telefone</th>    
+                  </tr>
+                </thead>
+                <tbody>
+                  <th> tela alunoSelect</th>
+                  <tr *ngFor="let aluno of alunos" 
+                    style="cursor: pointer;"  
+                     (click) = 'alunoSelect(aluno)'>  
+                    <th scope="row">{{aluno.id}}</th>    
+                    <td>{{aluno.nome}}</td>
+                    <td>{{aluno.sobrenome}}</td>
+                    <td>{{aluno.telefone}}</td>
+                  </tr>        
+                </tbody>
+                </table>
+            </div>
+         </div>
+======================================
+aluno.component.ts
+............
+
+
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IAluno } from '../models/Aluno';
+
+@Component({
+  selector: 'app-alunos',
+  templateUrl: './alunos.component.html',
+  styleUrls: ['./alunos.component.css']
+})
+export class AlunosComponent implements OnInit {
+   
+   public alunoForm: FormGroup;
+   public titulo = "Alunos";
+   public alunoSelecionado: IAluno | undefined;
+
+
+   alunos = [
+    {id:1, nome : "Al-1", sobrenome:"s-1", telefone:111.111},
+    {id:2, nome : "Al-2", sobrenome:"s-2", telefone:222.222},
+    {id:3, nome : "Al-3", sobrenome:"s-3", telefone:333.333},
+   ];
+
+
+   constructor(private fb: FormBuilder){
+    this.criarForm();
+    }
+
+   ngOnInit(): void { }
+
+   criarForm(){
+    this.alunoForm = this.fb.group({
+      nome: ['', Validators.required],
+      sobrenome: ['', Validators.required],
+      telefone: ['', Validators.required]
+    });
+   }
+
+    alunoSubmit(){
+     // console.log(this.alunoSelecionado);
+     console.log(this.alunoForm.value);
+    }
+
+   alunoSelect(aluno: IAluno){
+    this.alunoSelecionado = aluno;
+    this.alunoForm.patchValue(aluno);
+    // esse patchValue basedo no aluno ele preenche todos os campos
+   }
+
+   voltar(){
+    this.alunoSelecionado = null;
+   }
+}
+
+=====================================
+
+app.module.ts
+.......................
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { AlunosComponent } from './alunos/alunos.component';
+import { ProfessoresComponent } from './professores/professores.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NavComponent } from './nav/nav.component';
+import { TituloComponent } from './titulo/titulo.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    AlunosComponent,
+    ProfessoresComponent,
+    PerfilComponent,
+    DashboardComponent,
+    NavComponent,
+    TituloComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule{ }
+
+
+
+
