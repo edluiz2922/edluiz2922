@@ -1,50 +1,64 @@
 <!--  ***aula de angular  canal prograAMADA MENTE **** -->
 <!--  **** https://youtu.be/4k8aCkFpHk0 **** -->
 
-
-         <div *ngIf="alunoSelecionado">
-            <div class="row">
-              <div class="col-mr-auto">
-                <app-titulo [titulo]="'Aluno:'+ alunoSelecionado"></app-titulo>
-              </div>
-              <div class="col-mt-1">
-                <button class="btn btn-warning" (click) ='voltar()'> Voltar</button>
-              </div>
+         <div class="row">
+            <div class="col-sm-6" *ngIf="alunoSelecionado">
+          <div class="row">
+            <div class="col-mr-auto">
+              <app-titulo [titulo]="'Cod.aluno: '+ alunoSelecionado.id"></app-titulo>
             </div>
-              <!--formulário-->
-            <form>
+            <div class="col-mt-1">
+              <button class="btn btn-danger" (click) ='voltar()'> 
+                Voltar</button>
+            </div>
+          </div>
+            <!--formulário-->
+          <form>
               <div class="form-group">
-                <label for="formGroupExampleInput">Example label</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
+                <label for="formGroupExampleInput">NOME</label>
+                <input type="text"  value="{{alunoSelecionado.nome}}" class="form-control">
               </div>
               <div class="form-group">
-                <label for="formGroupExampleInput2">Another label</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
+                <label for="formGroupExampleInput2">sobrenome</label>
+                <input type="text" value="{{alunoSelecionado.sobrenome}}" class="form-control" >
               </div>
-            </form>
+              <div class="form-group">
+                <label for="formGroupExampleInput2">telefone</label>
+                <input type="text" value="{{alunoSelecionado.telefone}}" class="form-control" >
+              </div>
+              <div class="form-group">
+               <hr>
+               <button class="btn btn-success">salvar</button>
+              </div>
+          </form>
+            </div>
+              <!-- separando/colocando lado a lado com ngClas os dados-->
+            <div  [ngClass]="{'col-sm-6' : alunoSelecionado, 'col-sm-12':!alunoSelecionado}">
+              <app-titulo [titulo]="titulo" ></app-titulo>
+                Nenhum selecionado
+                <table class="table table-hover">
+                  <!-- bootstrap .....-->
+                  <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Disciplina</th>  
+                    <th scope="col">Telefone</th>    
+                  </tr>
+                </thead>
+                <tbody>
+                  <th> tela alunoSelect</th>
+                  <tr *ngFor="let aluno of alunos" 
+                    style="cursor: pointer;"  
+                     (click) = 'alunoSelect(aluno)'>  
+                    <th scope="row">{{aluno.id}}</th>    
+                    <td>{{aluno.nome}}</td>
+                    <td>{{aluno.sobrenome}}</td>
+                    <td>{{aluno.telefone}}</td>
+                  </tr>        
+                </tbody>
+                </table>
+            </div>
          </div>
 
-         <div *ngIf="!alunoSelecionado">
-          <app-titulo [titulo]="titulo" ></app-titulo>
-             Nenhum selecionado
-            <table class="table table-hover">
-              <!-- bootstrap .....-->
-              <thead class="thead-dark">
-              <tr>
-                <th scope="col">id</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Disciplina</th>  
-                <th scope="col">Telefone</th>    
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let aluno of alunos" 
-                style="cursor: pointer;"   (click) = 'alunoSelect(aluno)'>  
-                <th scope="row">{{aluno.id}}</th>    
-                <td>{{aluno.nome}}</td>
-                <td>{{aluno.sobrenome}}</td>
-                <td>{{aluno.telefone}}</td>
-              </tr>        
-            </tbody>
-            </table>
-         </div>
+

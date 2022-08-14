@@ -1,29 +1,29 @@
-
-<!-- formulário -->
-<div *ngIf="profSelecionado">
-  <div class="row">
+<div *ngIf="professorSelecionado">
+  <div class="row d-flex">
     <div class="col-mr-auto">
-      <app-titulo [titulo]="'Professor: '+ profSelecionado"></app-titulo>
+      <app-titulo [titulo]="'Professor: '+ professorSelecionado.id"></app-titulo>
     </div>
     <div class="col-mt-1">
-      <button class="btn btn-warning" (click) ='voltar()'>voltar</button>
+      <button class="btn btn-warning" (click) ="voltar()">
+        voltar a lista professor
+      </button>
     </div>
   </div> 
            <!--formulário-->
     <form>
       <div class="form-group">
-        <label for="formGroupExampleInput">Example label</label>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
+        <label for="formGroupExampleInput">NOME PROFESSOR</label>
+        <input type="text" value="{{professorSelecionado.nome}}" class="form-control" >
       </div>
       <div class="form-group">
-        <label for="formGroupExampleInput2">Another label</label>
-        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
+        <label for="formGroupExampleInput2">DISCIPLINA </label>
+        <input type="text" value="{{professorSelecionado.disciplina}}" class="form-control" >
       </div>
   </form>
 </div>
   <!--.............................--> 
 
- <div *ngIf="!profSelecionado">
+ <div *ngIf="!professorSelecionado">
 
   <app-titulo [titulo]="titulo"></app-titulo>
      Nenhum professor Selecionado....
